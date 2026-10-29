@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const activities = [
+  {
+    title: "Public Speaking & Presentation Coaching",
+    badge: "Speech Coaching & Templates",
+    image: "/images/speaking.jpg",
+    description: "Need help with a high-stakes presentation next week? Drawing from 30+ years of coaching experience, I share practical tips, speech structures, and confidence-building templates for anyone for whom public speaking is a chore.",
+    externalUrl: "https://www.talkinginpublic.com",
+    externalLabel: "Visit TalkingInPublic.com →",
+    internalUrl: "/public-speaking-tips/"
+  },
+  {
+    title: "Executive & Business Mentoring",
+    badge: "Weekly Podcast Series",
+    image: "/images/inside-exec-logo.jpg",
+    description: "Co-host of the Inside Exec podcast—a long-running weekly series for senior business executives worldwide addressing leadership dilemmas, operational management, team culture, and career resilience.",
+    externalUrl: "https://www.inside-exec.com",
+    externalLabel: "Listen on Inside-Exec.com →",
+    internalUrl: "/executive-and-business-mentoring/"
+  },
+  {
+    title: "Floral Art & Flower Arranging",
+    badge: "International Design & Demonstration",
+    image: "/images/floral-art.jpg",
+    description: "My lifelong passion. Discover competition galleries, design principles, and educational videos based on decades of international floral art competitions, judging, and stage demonstration masterclasses.",
+    externalUrl: "https://floralartonline.com",
+    externalLabel: "Explore FloralArtOnline.com →",
+    internalUrl: "/flower-arranging/"
+  },
+  {
+    title: "Book Repair & Conservation",
+    badge: "Archival Restoration",
+    image: "/images/book-repair.jpg",
+    description: "A comprehensive reference site offering step-by-step tutorials on repairing worn paperbacks, rebacking hardcovers, fixing split hinges, and using archival adhesives to preserve cherishable family books.",
+    externalUrl: "https://book-repair.com",
+    externalLabel: "Visit Book-Repair.com →",
+    internalUrl: "/book-repairs/"
+  }
+];
+---
+<BaseLayout title="Kim Baillie — Sharing What I Know">
+  <section class="hero">
+    <h1>What Can I Help You With?</h1>
+    <p class="lead">
+      Welcome! This site is the central base for my various projects, podcasts, and activities around the world. Based on decades of experience across executive leadership, public speaking coaching, international floral design, and book conservation, here is where you can find the specific resources you need.
+    </p>
+  </section>
+
+  <h2 class="section-title">Areas of Expertise & Activities</h2>
+  <p class="section-desc">Click any of the primary websites below to dive straight into guides, podcasts, and tutorials.</p>
+
+  <div class="activities-grid">
+    {activities.map((act) => (
+      <article class="activity-card">
+        <div class="card-image-wrap">
+          <img src={act.image} alt={act.title} loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div>
+            <span class="badge">{act.badge}</span>
+            <h2>{act.title}</h2>
+            <p>{act.description}</p>
+          </div>
+          <div>
+            <a href={act.externalUrl} target="_blank" rel="noopener" class="btn">
+              {act.externalLabel}
+            </a>
+            <a href={act.internalUrl} class="btn btn-secondary">
+              Read Overview &rarr;
+            </a>
+          </div>
+        </div>
+      </article>
+    ))}
+  </div>
+</BaseLayout>

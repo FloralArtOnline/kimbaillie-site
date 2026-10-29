@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout 
+  title="Book Repair & Conservation | Kim Baillie"
+  description="Archival book repair and paper conservation guides by Kim Baillie. Practical instructions for restoring hardcover and paperback books at book-repair.com."
+  ogImage="/images/book-repair.jpg"
+>
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a>
+    <span class="separator">&rsaquo;</span>
+    <span aria-current="page">Book Repair</span>
+  </nav>
+
+  <article class="content-box">
+    <h1>Book Repair & Conservation</h1>
+    <p class="lead">
+      Books are repositories of knowledge, memories, and personal history. Some years ago, I developed a dedicated online reference site showing book lovers and collectors how to safely preserve and mend cherished volumes.
+    </p>
+
+    <div style="margin: 2rem 0; text-align: center;">
+      <img src="/images/book-repair.jpg" alt="Book Conservation by Kim Baillie" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow);" />
+    </div>
+
+    <p>
+      The instructions on the website are based on the definitive practical work of Artemis BonaDea (an industry-renowned preservation expert and Alaskan librarian), alongside standard conservation literature by Matt T. Roberts and Don Etherington, combined with my own hands-on workshop experience.
+    </p>
+
+    <p>
+      Whether you need to tighten a wobbly hardcover hinge, reback a split cloth spine, mend torn pages with reversible wheat starch paste and Japanese tissue, or reinforce paperbacks, you will find clear, step-by-step guides at <strong>book-repair.com</strong>.
+    </p>
+
+    <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 2rem; margin-top: 2.5rem; text-align: center;">
+      <h2 style="margin-top: 0; font-family: var(--font-serif); color: var(--text-dark);">Visit How to Repair Your Favourite Books</h2>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 1.5rem auto;">
+        Access over 115 free tutorials, archival tool directories, paper grain testing methods, and bookbinding glossaries.
+      </p>
+      <a href="https://book-repair.com" target="_blank" rel="noopener" class="btn" style="max-width: 320px; margin: 0 auto;">
+        Visit Book-Repair.com &rarr;
+      </a>
+    </div>
+  </article>
+</BaseLayout>

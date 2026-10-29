@@ -1,0 +1,110 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+  type?: 'website' | 'profile';
+}
+
+const {
+  title,
+  description = "Kim Baillie — Sharing what I know. Personal portal and hub for public speaking coaching, executive mentoring, floral art, and book conservation.",
+  ogImage = "/images/speaking.jpg",
+  type = "website"
+} = Astro.props;
+
+const siteUrl = "https://kimbaillie.com";
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+const fullOgImage = ogImage.startsWith("http") ? ogImage : new URL(ogImage, siteUrl).toString();
+const pageTitle = title.includes("Kim Baillie") ? title : `${title} | Kim Baillie`;
+
+// Schema.org Person & WebSite structured data
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": `${siteUrl}/`,
+      "name": "Kim Baillie — Sharing What I Know",
+      "description": description,
+      "publisher": {
+        "@type": "Person",
+        "name": "Kim Baillie",
+        "url": `${siteUrl}/`
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#person`,
+      "name": "Kim Baillie",
+      "url": `${siteUrl}/`,
+      "image": fullOgImage,
+      "description": "Executive Mentor, Public Speaking Coach, International Floral Artist, and Book Conservator.",
+      "sameAs": [
+        "https://www.talkinginpublic.com",
+        "https://www.inside-exec.com",
+        "https://floralartonline.com",
+        "https://book-repair.com"
+      ]
+    }
+  ]
+};
+
+const safeSchema = JSON.stringify(siteSchema).replace(/</g, '\\u003c');
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{pageTitle}</title>
+  <meta name="description" content={description}>
+  <link rel="canonical" href={canonical}>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={type}>
+  <meta property="og:url" content={canonical}>
+  <meta property="og:title" content={pageTitle}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={fullOgImage}>
+  <meta property="og:site_name" content="Kim Baillie">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={pageTitle}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={fullOgImage}>
+
+  <!-- Structured Data (Schema.org JSON-LD) -->
+  <script type="application/ld+json" set:html={safeSchema} />
+</head>
+<body>
+  <header>
+    <div class="nav-wrap">
+      <div class="brand">
+        <a href="/" class="site-title">Kim Baillie</a>
+        <span class="tagline">Sharing What I Know</span>
+      </div>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/public-speaking-tips/">Public Speaking</a>
+        <a href="/executive-and-business-mentoring/">Executive Mentoring</a>
+        <a href="/flower-arranging/">Floral Art</a>
+        <a href="/book-repairs/">Book Repair</a>
+        <a href="/thinking-out-loud/">Thinking Out Loud</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer>
+    <p>&copy; {new Date().getFullYear()} Kim Baillie. All rights reserved. &bull; <a href="/privacy-policy/">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
